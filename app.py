@@ -17,7 +17,7 @@ def home():
 @app.route("/predict", methods=['POST'])
 def predict():
     if request.method == 'POST':
-        # Load the input values from the form
+        
         symptoms = request.form.getlist('symptoms[]')
         symptom_array = np.zeros(132) 
         for i in range(0,132):
@@ -27,11 +27,6 @@ def predict():
                 symptom_array[i] = 0
                 
 
-        # Preprocess the symptoms to create the input array for prediction
-        
-        # Assuming you have 132 symptoms
-        
-
         # Make the prediction using the loaded model
         input_data = symptom_array.reshape(1,-1)
         prediction = model.predict(input_data)
@@ -39,7 +34,7 @@ def predict():
 
         
 
-        predicted_disease = f"Prediction: You may have {disease}."  # Replace 'prediction' with your actual prediction
+        predicted_disease = f"Prediction: You may have {disease}."  
 
         return render_template('index.html', prediction_text=predicted_disease)
     else:
