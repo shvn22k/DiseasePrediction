@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Disease Prediction</title>
+  
 </head>
 <body>
   <h1>Disease Prediction</h1>
@@ -23,6 +23,7 @@ pip install -r requirements.txt
   <p>Try it out at: https://diseaseprediction-fhij.onrender.com/
   </p>
   <p>site may take some time to load and please enter 3-4 sensible symptoms for accurate predictions</p>
+  <p>OR</p>
   <code>
     <pre>
 # Run the application locally
