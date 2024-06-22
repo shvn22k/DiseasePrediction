@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",function(){
         option !== customSelect.querySelector(".options.all-tags")).map(function(option){
                 return{
                     value: option.getAttribute("data-value"),
-                    text: option.textContent.trim
+                    text: option.textContent.trim()
                 };
 
         });
