@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease Prediction</title>
-    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='new_style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -16,22 +16,10 @@
         <h2 style="color: #2a2a2a; text-align: center;">Disease Prediction</h2>
 
 
-        <div class="enclosure"><div class="custom-select open"><div class="select-box">
+        <div class="enclosure"><div class="custom-select"><div class="select-box">
             <input type="text" class="tags-input" names="tags" hidden />
 
             <div class="selected-options">
-                <span class="tag">Black
-                    <span class="remove-tag">&times;</span>
-                </span>
-                <span class="tag">Blue
-                    <span class="remove-tag">&times;</span>
-                </span>
-                <span class="tag">Green
-                    <span class="remove-tag">&times;</span>
-                </span>
-                <span class="tag">Red
-                    <span class="remove-tag">&times;</span>
-                </span>
             </div>
             <div class="arrow">
                 <i class="fa fa-angle-down"></i>
@@ -46,7 +34,7 @@
     
                 <div class="option all-tags" data-value="All">Select All</div>
     
-                {{ symptom_list_html }} 
+                {{ symptom_list_html |safe }} 
                 <!-- This list is to be rendered on '/' route of flask app has the sytnax of : 
                     " <div class="option" data-value="{symptom-x}"> Symptom-x </div> " -->
                 
@@ -54,8 +42,11 @@
                 <span class="tag_error_msg error"></span></div>
                 <input type="button" class="btn_submit" value="Submit"/>
             </div>
-        </div>  
+        </div>
+        <br><br> 
+        <div class="predicted-disease">The predicted disease is </div>  
     </div>
-    <script src="new_script.js" ></script>
+    
+    <script src="{{ url_for('static', filename='new_script.js')}}" defer></script>
 </body>
 </html>
