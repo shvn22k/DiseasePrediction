@@ -14,7 +14,7 @@ async def home():
     for i in assist.S_p:
         symp_list_html+=f'<div class="option" data-value="{temp_count}"> {i.replace("_"," ")} </div>'
         temp_count+=1
-    return  render_template('new_index.html', symptom_list_html=symp_list_html )
+    return  render_template('index.html', symptom_list_html=symp_list_html )
 
 @app.route("/predict", methods=['POST'])
 async def predict():
