@@ -171,8 +171,6 @@ window.addEventListener("DOMContentLoaded",function(){
         if(valid){
             let tags = document.querySelector(".tags-input").value;
             var predicted=document.getElementsByClassName("predicted-disease")[0];
-            console.log(predicted);
-            alert(tags);
             resetCustomSelects();
             var xhr=new XMLHttpRequest();
             xhr.open("POST","/predict")
