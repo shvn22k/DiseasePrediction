@@ -9,12 +9,9 @@ model = pickle.load(open('disease_model.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
 async def home():
-    fobj=open("symptoms.txt",'r')
-    tobj=fobj.read()
-    symp_list=tobj.split(",")
     temp_count=0
     symp_list_html=''
-    for i in symp_list:
+    for i in assist.S_p:
         symp_list_html+=f'<div class="option" data-value="{temp_count}"> {i.replace("_"," ")} </div>'
         temp_count+=1
     return  render_template('new_index.html', symptom_list_html=symp_list_html )
@@ -34,15 +31,11 @@ async def predict():
             else:
                 symp_array[i]=0
 
-
         input_data = symp_array.reshape(1,-1)
         prediction = model.predict(input_data)
         disease = assist.Z_p[np.where(assist.Y_p==prediction[0])[0][0]]
 
-        
-
-        predicted_disease = f"Prediction: You may have {disease}."  
-        print(predicted_disease)
+        predicted_disease = f"Prediction: You may have {disease}."
 
         return jsonify({"message":predicted_disease})
     else:
