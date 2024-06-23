@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded",function(){
+window.addEventListener("DOMContentLoaded",function(){
     const customSelects=document.querySelectorAll(".custom-select");
 
     function updateSelectedOptions(customSelect){
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const searchInput = customSelect.querySelector(".search-tags");
         const optionsContainer = customSelect.querySelector(".options");
         const noResultMessage = customSelect.querySelector(".no-result-message");
-        const options = customSelect.querySelector(".option");
+        const options = customSelect.querySelectorAll(".option");
         const allTagsOption = customSelect.querySelector(".option.all-tags");
         const clearButton = customSelect.querySelector(".clear");
 
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded",function(){
         });
     });
 
-    document.addEventListener("click",function(event){
+    window.addEventListener("click",function(event){
         const removeTag=event.target.closest(".remove-tag");
         if(removeTag){
             const customSelect =removeTag.closest(".custom-select");
@@ -169,9 +169,22 @@ document.addEventListener("DOMContentLoaded",function(){
         });
 
         if(valid){
-            let tags = document.querySelector(".tags_input").value;
+            let tags = document.querySelector(".tags-input").value;
+            var predicted=document.getElementsByClassName("predicted-disease")[0];
+            console.log(predicted);
             alert(tags);
             resetCustomSelects();
+            var xhr=new XMLHttpRequest();
+            xhr.open("POST","/predict")
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onreadystatechange = function() {
+                if(this.readyState=== XMLHttpRequest.DONE && this.status === 200){
+                    //update ui
+                    predicted.style.display="block";
+                    predicted.innerHTML=JSON.parse(this.responseText).message
+                }
+            };
+            xhr.send(JSON.stringify({"data":tags}))
             return;
         }
     });
