@@ -107,6 +107,7 @@
 .option{
     padding: 12px;
     cursor: pointer;
+    background-color: antiquewhite;
 }
 
 .options.active{
@@ -144,3 +145,8 @@
     background-color: #4caf50;
 }
 
+.predicted-disease{
+    display: none;
+    font-size: medium;
+    font-weight: 600;
+}
